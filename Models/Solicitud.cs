@@ -6,12 +6,8 @@ namespace ICL.Models
     {
         public int ClienteId { get; set; }
 
-        public DateTime FechaDeEntrega { get; set; }
-
-        public DateTime FechaDeIngreso { get; set; }
-
         // Relación con Postulantes (una solicitud puede tener varios postulantes)
-        public List<PedidoPostulante> PedidoPostulante { get; set; } = new List<PedidoPostulante>();
+        public List<PedidoPostulante> Pedidos { get; set; } = new List<PedidoPostulante>();
 
         public Cliente? Cliente { get; set; }
 

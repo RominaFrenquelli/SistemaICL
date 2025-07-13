@@ -1,201 +1,83 @@
 ﻿<!DOCTYPE html>
 <html lang="es">
-<!--<![endif]-->
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <meta charset="UTF-8" />
+    <title>Prueba de API - Sistema de Pedidos</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 2em;
+        }
 
-    <title>
-        ICL - Sistema de Gestion
-    </title>
-    
+        button, input, select {
+            margin: 0.5em 0;
+            padding: 0.5em;
+        }
 
+        pre {
+            background: #f4f4f4;
+            padding: 1em;
+            border: 1px solid #ccc;
+        }
+
+        section {
+            margin-bottom: 2em;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">
-                    <img src="/images/3721591.png" alt="logo" width="100">" ICL - Informes y Consultas Laborales "
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse flex-row-reverse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="Clientes.html">Clientes</a>
-                        </li>
-                        <li class="nav-item">
-                             <a class="nav-link active" aria-current="page" href="#">Proveedores</a>
-                        </li>
-                     </ul>
-                        
-                 </div>
-             </div>
-        </nav>
-    </header>
-    
-    
+    <h1>API Pagina de Prueba</h1>
 
-    <footer>
-        <div class="footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="sub-brand">
-                            <p class="text-center">
-                                <a class="bac-footer text-center" href="http://www.buenosaires.gob.ar" target="_blank">Informes y Consultas Laborales</a>
-                            </p>
-                            <p class="text-center">
-                                Dirección General de Compras y Contrataciones -
-                            </p>
-                            <p class="text-center">
-                                <a id="ctl00_pie_lnkAvisoNavegadores" href="javascript:__doPostBack(&#39;ctl00$pie$lnkAvisoNavegadores&#39;,&#39;&#39;)">Avisos sobre Navegadores</a>
-                                |&nbsp;<a id="ctl00_pie_lnkTerminos" href="javascript:__doPostBack(&#39;ctl00$pie$lnkTerminos&#39;,&#39;&#39;)">Términos y Condiciones de Uso</a>
-                            </p>
-                            <div align="center" title="Haga Click para Verificar - Este sitio cuenta con un Certificado SSL para asegurar la confidencialidad de sus comunicaciones.">
-                                <a href="http://www.macroseguridad.net/ssl/">
-                                    <img src="/Imagenes/certificado/comodo_secure_76x26_white.png" alt="Certificado SSL" width="76" style="border: 0px;">
-                                </a>
-                                <br>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <div class="modal" id="modalAvisoNavegadores" tabindex="-2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div id="ctl00_pie_div1" class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Aviso sobre Navegadores</h4>
-                </div>
-                <div class="modal-body" data-backdrop="static" data-keyboard="false">
-                    <div class="container-fluid">
-                        Para brindar la mejor calidad y velocidad de navegación nuestro sitio está desarrollado en función de las últimas versiones de los navegadores:
+    <section>
+        <h2>Crear Pedido (datos de prueba)</h2>
+        <input type="text" id="nombre" placeholder="Nombre" /><br />
+        <input type="text" id="apellido" placeholder="Apellido" /><br />
+        <input type="text" id="nuevoDni" placeholder="DNI" /><br />
+        <input type="date" id="fechaNacimiento" placeholder="Fecha de Nacimiento" /><br />
+        <input type="date" id="fechaIngreso" placeholder="Fecha de Ingreso" /><br />
+        <input type="text" id="fechaEntrega" placeholder="Fecha de Entrega" /><br />
+        <select id="servicio"><option>Seleccionar</option></select>
+        <button onclick="crearPedido()">Crear Pedido</button>
+        <pre id="nuevoCrear"></pre>
+    </section>
 
-                        <div class="col-md-6 col-md-offset-3">
-                            <div class="container-fluid">
-                                <div class="carousel slide" data-ride="carousel" id="carousel">
-                                    <div class="carousel-inner">
-                                        <div class="item active">
-                                            <img id="ctl00_pie_imgCarrousel" src="/App_Themes/bastrap/images/navegadores.jpg" style="border-width:0px;" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal" id="modalTerminosYCondiciones" tabindex="-2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">POLÍTICAS, TERMINOS Y CONDICIONES DE USO DEL SISTEMA (PTCUS) “BUENOS AIRES COMPRAS”</h4>
-                </div>
-                <div class="modal-body" style="height: 500px; overflow-y: auto; text-align: justify;">
-                    <h5>POLÍTICAS, TÉRMINOS Y CONDICIONES DE USO DEL SISTEMA COMUNES A TODOS LOS USUARIOS</h5>
-                    <h5>ENCUADRE JURÍDICO</h5>
-                    El acceso y/o uso al Sistema Electrónico de Adquisiciones y Contrataciones del Gobierno de la Ciudad Autónoma de Buenos Aires (GCABA), denominado Buenos Aires Compras (BAC), se efectúa en el marco de lo normado por el Art. 83 de la Ley 2095 y su Decreto Reglamentario, Decreto 1145/GCABA/2009, las Políticas, Términos y Condiciones de Uso del Sistema y las Condiciones Particulares que en el futuro puedan complementarlas, sustituirlas o modificarlas.
-                    <h5>ACEPTACIÓN</h5>
-                    Desde el momento de acceso y/o uso del BAC, se considera que el usuario acepta plenamente, y sin reserva alguna, las Políticas, Términos y Condiciones, así como las Condiciones Particulares de uso del sistema que pudieran dictarse, adhiriendo en forma inmediata a todas y cada una de ellas.
-                    <h5>ACCESO</h5>
-                    El acceso a BAC es público y gratuito, y se realiza a través de Internet, en el sitio cuya página principal se encuentra ubicada en <a href="http://www.buenosairescompras.gob.ar">http://www.buenosairescompras.gob.ar</a>
-                    . El Usuario deberá contar con un equipo y programas informáticos que cumplan con los requisitos mínimos de compatibilidad con el sistema que establezca el GCABA. El usuario toma conocimiento que cuando su equipo o programas de computación no reúnan tales requisitos mínimos, no podrá tener acceso al sistema y/o se podrá bloquear su acceso.
-                    <h5>TÉRMINOS</h5>
-                    A los efectos de las presentes Políticas, Términos y Condiciones, se entenderá que:
-                    <br />
-                    <u>BAC</u>
-                    constituye el medio informático a través del cual, los Organismos que componen el Gobierno de la Ciudad Autónoma de Buenos Aires señalados por el Art. 2 de la Ley 2095 publicarán sus llamados y efectuarán progresivamente sus procesos de contratación electrónica de bienes y servicios necesarios para su funcionamiento. El acceso a este portal es público y gratuito, y se realiza a través de la página web www.buenosairescompras.gob.ar. Asimismo, es medio de notificación fehaciente de todos los actos administrativos que se dicten en los respectivos procesos electrónicos, sin perjuicio de las demás formas de difusión y publicidad que la reglamentación vigente determina.
-                    <br />
-                    <u>USUARIOS DEL PROVEEDOR</u>
-                    : Es la persona hunmana que utiliza el BAC en representación de la persona humana o jurídica inscripta en el Registro Informatizado Único y Permanente de Proveedores del Gobierno de la Ciudad Autónoma de Buenos Aires como proveedor de bienes y servicios, conforme el procedimiento de autenticación de los usuarios de los proveedores establecido obrante en el Anexo II de la Resolución 596/GCABA/2011.
-                    <br />
-                    <u>USUARIOS COMPRADORES</u>
-                    : Es la persona humana designada por la Unidad Operativa de Compras, en adelante UOA, como responsable de la utilización del BAC, de acuerdo a los roles otorgados conforme al procedimiento de Administradores de Perfiles y Usuarios de BAC que establezca la Dirección General de Compras y Contrataciones.
-                    <br />
-                    <u>REGISTRO INFORMATIZADO UNICO Y PERMANENTE DE PROVEEDORES</u>
-                    El Registro Informatizado Único y Permanente de Proveedores (RIUPP), a cargo de la Dirección de General de Compras y Contrataciones (DGCyC) o la que en el futuro la reemplace, dependiente del Ministerio de Hacienda se incorpora también al sistema del BAC. Este registro tiene por objeto registrar a todas las personas físicas y jurídicas proveedoras de bienes y servicios que deseen contratar con el Sector Público de la Ciudad Autónoma de Buenos Aires, donde se consignarán sus antecedentes legales, económicos y comerciales y constatará la existencia de inhabilidad o incompatibilidad para contratar con los Organismos de la Administración.
-                    <br />
-                    <u>PROTECCIÓN DE LA INFORMACIÓN CONTENIDA EN EL PORTAL</u>
-                    Toda la información elaborada o disponible en, o a través del BAC, se encuentra protegida como propiedad intelectual. Está prohibido a todos los usuarios modificar, copiar, transmitir, vender, distribuir, exhibir, publicar, licenciar, crear trabajos derivados, o usar, en general, el contenido disponible en o a través del BAC para fines comerciales y otros.
-                    <br />
-                    <u>USO ADECUADO DEL BAC</u>
-                    El usuario que ingresa a BAC, se compromete a utilizar el mismo en forma lícita y de acuerdo a las presentes PCUS. Se encuentra prohibido a los usuarios, la realización de actos maliciosos o que atenten contra el sitio, o que de alguna manera pueda dañar, sobrecargar, deteriorar, impedir o limitar la utilización de todas o algunas de las funcionalidades del mismo.
-                    <br />
-                    <u>RESPONSABILIDAD POR CLAVES DE USUARIO</u>
-                    Los usuarios de BAC no pueden ceder, transferir o comunicar bajo ninguna circunstancia sus claves y nombres de usuarios, haciéndose plenamente responsables por los actos, documentos, anexos, ofertas y demás antecedentes que bajo esas claves y nombres de usuario, ingresen al BAC. Además, los usuarios asumen la obligación de cambiar sus claves frecuentemente, las que se debe evitar que sean evidentes y/o simples.
-                    <br />
-                    <u>RESPONSABILIDAD</u>
-                    El Gobierno de la Ciudad Autónoma de Buenos Aires no se responsabiliza por los daños y/o perjuicios derivados del acceso y/o uso de los contenidos publicados en el BAC.
-                    <br />
-                    El Gobierno de la Ciudad Autónoma de Buenos Aires no se responsabiliza por las interrupciones de este servicio, ni por cualquier causa ajena que impida el acceso a la página por causa no imputable al mismo.
-                    <br />
-                    La veracidad e integridad de la totalidad de la información y contenido de los documentos publicados son de exclusiva responsabilidad de los usuarios que lo publican y envían, de acuerdo a las claves de acceso bajo las cuales actúen.
-                    <br />
-                    El Gobierno de la Ciudad Autónoma de Buenos Aires no es responsable por la interrupción en la recepción de e-mails por parte del usuario-proveedor.
-                    <br />
-                    El Gobierno de la Ciudad Autónoma de Buenos Aires no es responsable de los virus que puedan contener los documentos que adjuntan los usuarios del sitio. Es responsabilidad de cada usuario velar por los archivos que sube al sitio no tengan virus de ninguna especie. Las estadísticas e informes disponibles en el BAC, son meramente referenciales y no comprometen a la DGCyC o la que en el futuro la reemplace, ni al Gobierno de la Ciudad Autónoma de Buenos Aires.
-                    <br />
-                    <u>SUSPENSIÓN O ELIMINACIÓN DE USUARIOS</u>
-                    La DGCyC o la que en el futuro la reemplace se reserva el derecho de suspender y/o eliminar unilateral y automáticamente del BAC a los usuarios que incumplan las PCUS.
-                    <br />
-                    <u>CENTRO DE CONTACTO. MESA DE AYUDA TELEFÓNICA</u>
-                    La DGCyC o la que en el futuro la reemplace, establecerá para todos los usuarios del BAC, un centro de contacto, que contará con una mesa de ayuda telefónica. Esta mesa de ayuda atenderá las consultas de los usuarios sobre el funcionamiento del BAC en el horario de atención de lunes a viernes de 08:00 a 20:00 horas, en el número telefónico (011) 5236-4800 opción 8.
-                    <h5>USUARIOS DE LOS PROVEEDORES</h5>
-                    <u>CORREOS ELECTRÓNICOS ENVIADOS POR BAC A PROVEEDORES DURANTE EL PROCESO DE CONTRATACIÓN</u>
-                    Los usuarios proveedores aceptan recibir permanentemente correos electrónicos relativos a procesos electrónicos de adquisición, órdenes de compra y demás información relevante, a la dirección de correo informado por ellos en el BAC.
-                    <br />
-                    El BAC es el medio obligatorio de publicación de los llamados y procesos de contratación electrónica del GCABA, sin perjuicio de las demás formas de difusión y publicidad que la reglamentación vigente determina.
-                    <br />
-                    Los correos electrónicos enviados por el BAC sólo constituyen un medio de aviso. Recomendándose a los proveedores revisar periódicamente del BAC en las páginas que corresponden -en particular Escritorio del Proveedor- para informarse de las novedades vinculadas a las etapas, desarrollo del proceso de adquisición electrónica y demás información relevante, como así también consultar las demás formas de difusión y publicidad que la reglamentación vigente determina.
-                    <br />
-                    <u>LIBERACIÓN DE RESPONSABILIDAD</u>
-                    Los usuarios proveedores deben velar por la seriedad de las ofertas ingresadas al BAC, siendo plenamente responsables por las mismas.
-                    <br />
-                    Los usuarios proveedores deberán aceptar que el Gobierno de la Ciudad Autónoma de Buenos Aires carece de toda responsabilidad por los resultados que obtengan en cada uno de los procesos electrónicos de adquisición en que participen.
-                    <br />
-                    Los usuarios proveedores liberan al Gobierno de la Ciudad Autónoma de Buenos Aires de cualquier responsabilidad derivada de la dilación o no envío oportuno de correos electrónicos de alerta, declarando conocer que el medio de notificación es la publicación que cada Usuario Comprador efectúa en el BAC. La no recepción oportuna de correos electrónicos de alerta que envía el BAC, no justificará, ni se considerará como causal suficiente para eximir a los proponentes de sus cargas y responsabilidades.
-                    <br />
-                    <u>POLÍTICAS DE PRIVACIDAD</u>
-                    Los usuarios proveedores del BAC aceptan por el solo hecho de su inscripción o registro en el sitio, que los datos, antecedentes e información aportados en las diversas etapas de los procesos en que participan, sean de público conocimiento en el ámbito de las transacciones que se efectúan en él y que solo están disponibles públicamente para esos efectos. Asimismo los usuarios del BAC por el sólo hecho de su inscripción, otorgan su conformidad para que los resultados de los procesos de contratación en que participen y las respectivas contrataciones formen parte de las estadísticas e informes, se procesen y se publiquen por parte del Gobierno de la Ciudad Autónoma de Buenos Aires.
-                    <br />
-                    Cuando se solicite por parte de terceros acceso a información que pudiese afectar derechos de los usuarios proveedores, tales como los relacionados con su vida privada o derechos de carácter económico o comercial, se procederá en un todo conforme a la Ley Nacional N° 25.326 de “Protección de Datos Personales” modificada por la Ley Nacional N°26.343, la Ley Nacional N°27.806 de “Transparencia y Acceso a la Información Pública”, y las Leyes Locales N°1.845 de “Protección de Datos Personales” reglamentada por el Decreto N° 725/2007 y la Ley 104 de “Acceso a la Información” y su Decreto Reglamentario N°1361/07 vigentes en el ámbito de la Ciudad Autónoma de Buenos Aires.
-                    <br />
-                    <u>DECLARACIÓN</u>
-                    Los usuarios del BAC declaran conocer y aceptar la circunstancia relativa a que la DGCyC o la que en el futuro la reemplace, puede en cualquier momento modificar todo o en parte de las presentes PCUS, que serán oportunamente publicadas en BAC.
-                    <br />
-                    <u>USUARIOS COMPRADORES</u>
-                    El usuario-comprador es responsable de la información que se publique y debe procurar que su contenido se adapte a las previsiones contempladas por la normativa vigente. Queda estrictamente prohibido a los usuarios compradores realizar cualquier uso del BAC ajeno al marco del proceso de compras públicas electrónicas. Los Organismos de Control están autorizados a utilizar el BAC con el objeto de asegurar el correcto desempeño de los distintos procesos y velar por su transparencia.
-                    <br />
-                    <u>LIMITE DE RESPONSABILIDAD DEL BAC SOBRE EL PROCESO DE ADQUISICIONES</u>
-                    El BAC es un medio que facilita la realización de los procesos de contratación, sin garantizar la seriedad e idoneidad de las ofertas recibidas, las que deben ser evaluadas por cada usuario comprador, y en su caso, por la Comisión Evaluadora de Ofertas prevista en la Ley N°2095.
+    <section>
+        <h2>Crear nuevo servicio (datos de prueba)</h2>
+        <input type="text" id="nombre" placeholder="Nombre" /><br />
+        <button onclick="crearServicio()">Crear Servicio</button>
+        <pre id="nuevoCrear"></pre>
+    </section>
 
-                </div>
-            </div>
-        </div>
-    </div>
-    </form>
+    <script>
+        async function crearServicio() {
+            const nuevo = document.getElementById("nuevoCrear");
+            const carga = { nombre: document.getElementById("nombre").value };
 
-    <script src="https://cdn.jsdelivr.net/nom/@popperjs/core@2.10.2/dist/umd/pooper.min.js" integrity="sha384-7+zCNj/IqJ95wo16MtfskbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+            nuevo.textContent = "Enviando datos";
 
+            try {
+                const res = await fetch("/api/Servicio", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(carga)
+                });
+                if (!res.ok) throw new Error("Error: " + res.status);
+                const data = await res.json();
+                resultado.textContent = "servicio creado:\n" + JSON.stringify(data, null, 2);
+            } catch (err) {
+                resultado.textContent = "Error: " + err;
+            }
+        }
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>s
+        async function crearPedido() {
+            const respuesta = document.getElementById("nuevoCrear");
+            const carga = {
+                nombre: document.getElementById("nombre").value,
+                apellido: document.getElementById("apellido").value,
+                dni: document.getElementById("nuevoDni").value,
+
+            }
+        }
+    </script>
 </body>
-</html>
-
-
-
-
 </html>

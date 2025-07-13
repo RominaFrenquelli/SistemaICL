@@ -2,6 +2,7 @@
 {
     public class Servicio : MiClaseBase
     {
-        public string Nombre { get; set; } 
+        public string? Nombre { get; set; }
+        
     }
 }

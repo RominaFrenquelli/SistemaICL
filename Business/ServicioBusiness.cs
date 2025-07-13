@@ -1,4 +1,5 @@
 ﻿using ICL.Data;
+using ICL.Models;
 using ICL.Repository;
 
 namespace ICL.Business
@@ -10,6 +11,16 @@ namespace ICL.Business
         public ServicioBusiness(ICLContext context)
         {
             _repository = new ServicioRepository(context);
+        }
+
+        public int CrearServicio(Servicio nuevo)
+        {
+            return _repository.CrearServicio(nuevo);
+        }
+
+        public List<Servicio> ListarServicio()
+        {
+            return _repository.ListarServicio();
         }
     }
 }

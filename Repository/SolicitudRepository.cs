@@ -25,7 +25,7 @@ namespace ICL.Repository
         public Solicitud ObtenerSolicitud(int idSolicitud)
         {
             Solicitud laSolicitud = _context.Solicitud
-                .Include(s => s.PedidoPostulante)
+                .Include(p => p.Pedidos)
                 .Include(s => s.Cliente)
                 .FirstOrDefault(sol => sol.Id == idSolicitud);
 

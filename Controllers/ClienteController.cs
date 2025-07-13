@@ -34,40 +34,36 @@ namespace ICL.Controllers
             }
         }
         [HttpGet(Name = "ObtenerClientes")]
-        public IActionResult ObtenerClientes()
+        public IActionResult ObtenerClientes([FromQuery] string? nombre)
         {
             // 1 - Obtener clientes
-            var clientes = _clienteBusiness.ObtenerClientes();
-
-            // 2 - Retornar los clientes
-
-            if (clientes.Count == 0)
+            try
             {
-                return NotFound();
-            }
-            else
-            {
+                List<Cliente> clientes;
+
+                if (string.IsNullOrWhiteSpace(nombre))
+                {
+                    clientes = _clienteBusiness.ObtenerClientes();
+                }
+                else
+                {
+                    clientes = _clienteBusiness.BuscarClientes(nombre);
+                }
+
+                if (clientes.Count == 0)
+                {
+                    return NotFound();
+                }
+
                 return Ok(clientes);
             }
-        }
-
-        [HttpGet(Name = "BuscarClientes")]
-        public IActionResult BuscarClientes(string nombre)
-        {
-
-            var clientes = _clienteBusiness.BuscarClientes(nombre);
-
-
-            if (clientes.Count == 0)
+            catch (Exception ex)
             {
-                return NotFound();
-            }
-            else
-            {
-                return Ok(clientes);
+                return BadRequest(ex.Message);
             }
 
-
         }
+
+        
     }
 }

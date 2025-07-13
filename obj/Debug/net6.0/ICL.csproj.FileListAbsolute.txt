@@ -1,5 +1,6 @@
 C:\Users\Administrador\source\repos\SistemaDeGestion\ICL\ICL\bin\Debug\net6.0\appsettings.Development.json
 C:\Users\Administrador\source\repos\SistemaDeGestion\ICL\ICL\bin\Debug\net6.0\appsettings.json
+C:\Users\Administrador\source\repos\SistemaDeGestion\ICL\ICL\bin\Debug\net6.0\ICL.staticwebassets.runtime.json
 C:\Users\Administrador\source\repos\SistemaDeGestion\ICL\ICL\bin\Debug\net6.0\ICL.exe
 C:\Users\Administrador\source\repos\SistemaDeGestion\ICL\ICL\bin\Debug\net6.0\ICL.deps.json
 C:\Users\Administrador\source\repos\SistemaDeGestion\ICL\ICL\bin\Debug\net6.0\ICL.runtimeconfig.json
@@ -242,4 +243,3 @@ C:\Users\Administrador\source\repos\SistemaDeGestion\ICL\ICL\obj\Debug\net6.0\re
 C:\Users\Administrador\source\repos\SistemaDeGestion\ICL\ICL\obj\Debug\net6.0\ICL.pdb
 C:\Users\Administrador\source\repos\SistemaDeGestion\ICL\ICL\obj\Debug\net6.0\ICL.genruntimeconfig.cache
 C:\Users\Administrador\source\repos\SistemaDeGestion\ICL\ICL\obj\Debug\net6.0\ref\ICL.dll
-C:\Users\Administrador\source\repos\SistemaDeGestion\ICL\ICL\bin\Debug\net6.0\ICL.staticwebassets.runtime.json

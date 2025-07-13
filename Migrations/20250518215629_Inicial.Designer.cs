@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ICL.Migrations
 {
     [DbContext(typeof(ICLContext))]
-    [Migration("20231002091629_administradorClientePedidoPostulanteDetalleDeListaDePreciosListaDePreciosProveedorRedactorServicio")]
-    partial class administradorClientePedidoPostulanteDetalleDeListaDePreciosListaDePreciosProveedorRedactorServicio
+    [Migration("20250518215629_Inicial")]
+    partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,26 +24,6 @@ namespace ICL.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("ICL.Models.Administrador", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("Disable")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Administrador");
-                });
-
             modelBuilder.Entity("ICL.Models.Cliente", b =>
                 {
                     b.Property<int>("Id")
@@ -53,35 +33,22 @@ namespace ICL.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Cuil")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Direccion")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Disable")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ListaDePreciosId")
-                        .HasColumnType("int");
+                    b.Property<bool>("Enable")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Mail")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PedidoId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PostulanteId")
-                        .HasColumnType("int");
 
                     b.Property<string>("RazonSocial")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Telefono")
-                        .HasColumnType("int");
+                    b.Property<string>("Telefono")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -96,8 +63,8 @@ namespace ICL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("Disable")
-                        .HasColumnType("int");
+                    b.Property<bool>("Enable")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Servicio")
                         .IsRequired()
@@ -119,8 +86,8 @@ namespace ICL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("Disable")
-                        .HasColumnType("int");
+                    b.Property<bool>("Enable")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
@@ -131,37 +98,7 @@ namespace ICL.Migrations
                     b.ToTable("ListaDePrecios");
                 });
 
-            modelBuilder.Entity("ICL.Models.Pedido", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("ClienteId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Disable")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("FechaDeIngreso")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Puesto")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Solicitante")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Pedido");
-                });
-
-            modelBuilder.Entity("ICL.Models.Postulante", b =>
+            modelBuilder.Entity("ICL.Models.PedidoPostulante", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -170,44 +107,66 @@ namespace ICL.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Apellido")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Cuil")
+                    b.Property<int?>("ClienteId")
                         .HasColumnType("int");
 
-                    b.Property<int>("DNI")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Direccion")
-                        .IsRequired()
+                    b.Property<string>("CodigoPedido")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Disable")
+                    b.Property<string>("DNI")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Enable")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Estado")
                         .HasColumnType("int");
 
-                    b.Property<int>("Edad")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("FechaDeEntrega")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("FechaDeIngreso")
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("FechaDeNacimiento")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Nombre")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PedidoId")
+                    b.Property<string>("Observaciones")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ProveedorId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Servicio")
-                        .IsRequired()
+                    b.Property<string>("RedactorId")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("RedactorId1")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ServicioId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SolicitudId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PedidoId");
+                    b.HasIndex("ClienteId");
 
-                    b.ToTable("Postulante");
+                    b.HasIndex("ProveedorId");
+
+                    b.HasIndex("RedactorId1");
+
+                    b.HasIndex("ServicioId");
+
+                    b.HasIndex("SolicitudId");
+
+                    b.ToTable("PedidoPostulante");
                 });
 
             modelBuilder.Entity("ICL.Models.Proveedor", b =>
@@ -218,8 +177,8 @@ namespace ICL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("Disable")
-                        .HasColumnType("int");
+                    b.Property<bool>("Enable")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
@@ -238,8 +197,8 @@ namespace ICL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("Disable")
-                        .HasColumnType("int");
+                    b.Property<bool>("Enable")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
@@ -258,8 +217,8 @@ namespace ICL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("Disable")
-                        .HasColumnType("int");
+                    b.Property<bool>("Enable")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
@@ -270,16 +229,83 @@ namespace ICL.Migrations
                     b.ToTable("Servicio");
                 });
 
-            modelBuilder.Entity("ICL.Models.Postulante", b =>
+            modelBuilder.Entity("ICL.Models.Solicitud", b =>
                 {
-                    b.HasOne("ICL.Models.Pedido", null)
-                        .WithMany("PostulantesDelPedido")
-                        .HasForeignKey("PedidoId");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("ClienteId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Enable")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClienteId");
+
+                    b.ToTable("Solicitud");
                 });
 
-            modelBuilder.Entity("ICL.Models.Pedido", b =>
+            modelBuilder.Entity("ICL.Models.PedidoPostulante", b =>
                 {
-                    b.Navigation("PostulantesDelPedido");
+                    b.HasOne("ICL.Models.Cliente", null)
+                        .WithMany("PedidosPostulantes")
+                        .HasForeignKey("ClienteId");
+
+                    b.HasOne("ICL.Models.Proveedor", "Proveedor")
+                        .WithMany()
+                        .HasForeignKey("ProveedorId");
+
+                    b.HasOne("ICL.Models.Redactor", "Redactor")
+                        .WithMany()
+                        .HasForeignKey("RedactorId1");
+
+                    b.HasOne("ICL.Models.Servicio", "Servicio")
+                        .WithMany()
+                        .HasForeignKey("ServicioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ICL.Models.Solicitud", "Solicitud")
+                        .WithMany("Pedidos")
+                        .HasForeignKey("SolicitudId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Proveedor");
+
+                    b.Navigation("Redactor");
+
+                    b.Navigation("Servicio");
+
+                    b.Navigation("Solicitud");
+                });
+
+            modelBuilder.Entity("ICL.Models.Solicitud", b =>
+                {
+                    b.HasOne("ICL.Models.Cliente", "Cliente")
+                        .WithMany("Solicitudes")
+                        .HasForeignKey("ClienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cliente");
+                });
+
+            modelBuilder.Entity("ICL.Models.Cliente", b =>
+                {
+                    b.Navigation("PedidosPostulantes");
+
+                    b.Navigation("Solicitudes");
+                });
+
+            modelBuilder.Entity("ICL.Models.Solicitud", b =>
+                {
+                    b.Navigation("Pedidos");
                 });
 #pragma warning restore 612, 618
         }

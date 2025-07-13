@@ -22,13 +22,13 @@ namespace ICL.Controllers
         {
             try
             {
-                if(nueva == null || nueva.PedidoPostulante == null || nueva.PedidoPostulante.Count() == 0)
+                if(nueva == null || nueva.Pedidos == null || nueva.Pedidos.Count() == 0)
                 {
                     return BadRequest("Debe haber al menos un pedido asociado a la solicitud.");
                 }
 
 
-                var idSolicitud = _solicitudBusiness.CrearSolicitud(nueva, nueva.PedidoPostulante);
+                var idSolicitud = _solicitudBusiness.CrearSolicitud(nueva, nueva.Pedidos);
 
                 return Ok(new { idSolicitud });
             }
