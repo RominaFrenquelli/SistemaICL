@@ -12,17 +12,17 @@ namespace ICL.Controllers
     {
         private readonly ServicioBusiness _servicioBusiness;
 
-        public ServicioController(ICLContext context)
+        public ServicioController(ServicioBusiness servicioBusiness)
         {
-            _servicioBusiness = new ServicioBusiness(context);
+            _servicioBusiness = servicioBusiness;
         }
 
         [HttpPost (Name = "Crear Servicio")]
-        public IActionResult CrearServicio(Servicio nuevo)
+        public async Task<IActionResult> CrearServicio(Servicio nuevo)
         {
             try
             {
-                var id = _servicioBusiness.CrearServicio (nuevo);
+                var id = await _servicioBusiness.CrearServicio (nuevo);
                 return Ok(new { Id = id, Mensaje = "El servicio se creo correctamente" });
             }
             catch (Exception ex)
@@ -33,11 +33,11 @@ namespace ICL.Controllers
         }
 
         [HttpGet(Name ="Lista de servicios")]
-        public IActionResult ListarServicio()
+        public async Task<IActionResult> ListarServicio()
         {
             try
             {
-                var lista = _servicioBusiness.ListarServicio();
+                var lista = await _servicioBusiness.ListarServicio();
                 return Ok(lista);
             }
             catch (Exception ex)
@@ -45,6 +45,13 @@ namespace ICL.Controllers
 
                 return BadRequest(ex.Message);
             }
+        }
+
+        [HttpGet(Name ="ObtenerPorIds")]
+        public async Task<IActionResult> ObtenerPorIds(List<int> ids)
+        {
+            var listaIds = await _servicioBusiness.ObtenerPorIds (ids);
+            return Ok(listaIds);
         }
     }
 }

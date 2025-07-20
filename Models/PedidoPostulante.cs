@@ -107,25 +107,83 @@ namespace ICL.Models
             Estado = EstadoPedido.AsignadoARedactor;
         }
 
-        
+        public void IniciarRedaccion()
+        {
+            if(Estado != EstadoPedido.AsignadoARedactor)
+                throw new InvalidOperationException("El pedido debe estar en redacción para marcarlo como redactado.");
 
+            Estado = EstadoPedido.EnRedaccion;
+        }
+
+        public void MarcarComoRedactado()
+        {
+            if (Estado != EstadoPedido.EnRedaccion)
+                throw new InvalidOperationException("El pedido debe estar en redacción para marcarlo como redactado.");
+
+            Estado = EstadoPedido.Redactado;
+        }
+
+        public void EnviarAEvaluacionExterna(int proveedorId)
+        {
+            if (Estado != EstadoPedido.Redactado)
+                throw new InvalidOperationException("El pedido debe estar redactado antes de enviarse a evaluación externa.");
+
+            if (proveedorId <= 0)
+                throw new ArgumentException("ID de proveedor inválido.");
+
+            ProveedorId = proveedorId;
+            Estado = EstadoPedido.EnEvaluacionExterna;
+        }
+
+        public void MarcarComoPendienteDeEntrega()
+        {
+            if (Estado != EstadoPedido.Redactado && Estado != EstadoPedido.EnEvaluacionExterna)
+                throw new InvalidOperationException("Solo se puede pasar a pendiente de entrega desde redactado o evaluación externa.");
+
+            Estado = EstadoPedido.PendienteDeEntrega;
+        }
+
+        public void Entregar()
+        {
+            if (Estado != EstadoPedido.PendienteDeEntrega)
+                throw new InvalidOperationException("El pedido debe estar pendiente de entrega para marcarlo como entregado.");
+
+            FechaDeEntrega = DateTime.Now;
+            Estado = EstadoPedido.Entregado;
+        }
+
+        public void Cancelar()
+        {
+            if (Estado == EstadoPedido.Entregado)
+                throw new InvalidOperationException("No se puede cancelar un pedido ya entregado.");
+
+            Estado = EstadoPedido.Cancelado;
+        }
+
+        public void Eliminar()
+        {
+            if (Estado == EstadoPedido.Entregado)
+                throw new InvalidOperationException("No se puede eliminar un pedido ya entregado.");
+
+            Estado = EstadoPedido.Eliminado;
+            Enable = false;
+        }
     }
 
-    public enum EstadoPedido
-    {
-        Ingresado,       // Cuando se crea por primera vez
-        AsignadoARedactor, // Asignado a un redactor
-        EnRedaccion,     // El redactor está trabajando
-        PendienteDeEvaluacionExterna, // Si necesita un proveedor externo
-        EnEvaluacionExterna, // El proveedor externo está trabajando
-        Redactado,       // Informe terminado por el redactor
-        PendienteDeEntrega, // Listo para entregar al cliente
-        Entregado,       // Entregado al cliente
-        Cancelado,       // Si se cancela en cualquier etapa
-        Eliminado        //Eliminación logica
-    }
-
-    
 
 
+}
+
+public enum EstadoPedido
+{
+    Ingresado,       // Cuando se crea por primera vez
+    AsignadoARedactor, // Asignado a un redactor
+    EnRedaccion,     // El redactor está trabajando
+    PendienteDeEvaluacionExterna, // Si necesita un proveedor externo
+    EnEvaluacionExterna, // El proveedor externo está trabajando
+    Redactado,       // Informe terminado por el redactor
+    PendienteDeEntrega, // Listo para entregar al cliente
+    Entregado,       // Entregado al cliente
+    Cancelado,       // Si se cancela en cualquier etapa
+    Eliminado        //Eliminación logica
 }

@@ -12,7 +12,7 @@ namespace ICL.Business
         public SolicitudBusiness(ICLContext context)
         {
             _repository = new SolicitudRepository(context);
-            _postulanteBusiness = new PedidoPostulanteBusiness(new PedidoPostulanteRepository(context)); 
+            _postulanteBusiness = new PedidoPostulanteBusiness(new PedidoPostulanteRepository(context), new ServicioRepository(context)); 
         }
 
         

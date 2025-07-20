@@ -17,6 +17,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IPedidoPostulanteRepository, PedidoPostulanteRepository>();
 builder.Services.AddScoped<IPedidoPostulanteBusiness, PedidoPostulanteBusiness>();
+builder.Services.AddScoped<IServicioRepository, ServicioRepository>();
 
 var app = builder.Build();
 

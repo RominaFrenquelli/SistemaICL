@@ -1,9 +1,11 @@
 ﻿using ICL.Data;
+using ICL.Interfaces;
 using ICL.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ICL.Repository
 {
-    public class ServicioRepository
+    public class ServicioRepository : IServicioRepository
     {
         private readonly ICLContext _context;
 
@@ -12,16 +14,21 @@ namespace ICL.Repository
             _context = context;
         }
 
-        public int CrearServicio(Servicio nuevo)
+        public async Task<int> CrearServicio(Servicio nuevo)
         {
-            _context.Servicio.Add(nuevo);
-            _context.SaveChanges();
+            await _context.Servicio.AddAsync(nuevo);
+            await _context.SaveChangesAsync();
             return nuevo.Id;
         }
 
-        public List<Servicio> ListarServicio()
+        public async Task<List<Servicio>> ListarServicio()
         {
-            return _context.Servicio.Where(s => s.Enable != null || s.Enable != false).ToList();
+            return await _context.Servicio.Where(s => s.Enable == null || s.Enable != false).ToListAsync();
+        }
+
+        public async Task<List<Servicio>> ObtenerPorIds(List<int> ids)
+        {
+            return await _context.Servicio.Where(s => ids.Contains(s.Id) && (s.Enable == null || s.Enable == true)).ToListAsync();
         }
 
     }

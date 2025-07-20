@@ -9,10 +9,12 @@ namespace ICL.Business
     public class PedidoPostulanteBusiness : IPedidoPostulanteBusiness
     {
         private readonly IPedidoPostulanteRepository _repository;
+        private readonly IServicioRepository _servicioRepository;
 
-        public PedidoPostulanteBusiness(IPedidoPostulanteRepository pedidoPostulanteRepository)
+        public PedidoPostulanteBusiness(IPedidoPostulanteRepository pedidoPostulanteRepository, IServicioRepository servicioRepo)
         {
             _repository = pedidoPostulanteRepository;
+            _servicioRepository = servicioRepo;
         }
 
         private async Task<string> GenerarCodigoPedido()
@@ -40,6 +42,8 @@ namespace ICL.Business
                 algunPostulante.Observaciones += $"⚠️ ALERTA: Este postulante ya ha sido solicitado anteriormente por otra empresa.";
 
             }
+
+            algunPostulante.Servicios = await _servicioRepository.ObtenerPorIds(algunPostulante.ServiciosId ?? new());
 
             var codigo = await GenerarCodigoPedido();
             algunPostulante.AsignarCodigo(codigo);
