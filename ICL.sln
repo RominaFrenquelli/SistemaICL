@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICL", "ICL\ICL.csproj", "{B328FB7E-7F19-48A3-B23E-38A24A6C9747}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ICL.Tests", "ICL.Tests\ICL.Tests.csproj", "{8A4EC8E3-7D12-D653-B051-986D4E0C9DF4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B328FB7E-7F19-48A3-B23E-38A24A6C9747}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B328FB7E-7F19-48A3-B23E-38A24A6C9747}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B328FB7E-7F19-48A3-B23E-38A24A6C9747}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B328FB7E-7F19-48A3-B23E-38A24A6C9747}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A4EC8E3-7D12-D653-B051-986D4E0C9DF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A4EC8E3-7D12-D653-B051-986D4E0C9DF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A4EC8E3-7D12-D653-B051-986D4E0C9DF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A4EC8E3-7D12-D653-B051-986D4E0C9DF4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {22C236ED-9E7F-42A3-874F-E81B96086480}
+	EndGlobalSection
+EndGlobal
